@@ -20,57 +20,57 @@ def passwortTesten(eingabe):
         return False
     for char in eingabe:
         if state == State.START:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.LOWER
-            elif char.isdigit():
+            elif ord(char) in range(48, 58):
                 state = State.DIGIT
 
         elif state == State.LOWER:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.LOWER_LOWER
-            elif char.isdigit():
+            elif ord(char) in range(48, 58):
                 state = State.LOWER_DIGIT
-            elif not char.isalnum():
+            elif set(r' !"#$%&\'()*+,-./:;<=>?@\[\]\^_`{|}~').intersection(char):
                 state = State.LOWER_SPECIAL
 
         elif state == State.DIGIT:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.DIGIT_LOWER
-            elif char.isdigit():
+            elif ord(char) in range(48, 58):
                 state = State.DIGIT_DIGIT
-            elif not char.isalnum():
+            elif set(r' !"#$%&\'()*+,-./:;<=>?@\[\]\^_`{|}~').intersection(char):
                 state = State.DIGIT_SPECIAL
 
         elif state == State.LOWER_LOWER:
-            if char.isdigit():
+            if ord(char) in range(48, 58):
                 state = State.END
 
         elif state == State.LOWER_DIGIT:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.END
-            elif char.isdigit():
+            elif ord(char) in range(48, 58):
                 state = State.END
-            elif not char.isalnum():
+            elif set(r' !"#$%&\'()*+,-./:;<=>?@\[\]\^_`{|}~').intersection(char):
                 state = State.END
 
         elif state == State.LOWER_SPECIAL:
-            if char.isdigit():
+            if ord(char) in range(48, 58):
                 state = State.END
 
         elif state == State.DIGIT_LOWER:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.END
-            elif char.isdigit():
+            elif ord(char) in range(48, 58):
                 state = State.END
-            elif not char.isalnum():
+            elif set(r' !"#$%&\'()*+,-./:;<=>?@\[\]\^_`{|}~').intersection(char):
                 state = State.END
 
         elif state == State.DIGIT_DIGIT:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.END
 
         elif state == State.DIGIT_SPECIAL:
-            if char.islower():
+            if ord(char) in range(97, 123):
                 state = State.END
 
     if state == State.END:
@@ -79,4 +79,4 @@ def passwortTesten(eingabe):
         return False
 
 
-print(passwortTesten('2#c'))
+print(passwortTesten('2~q'))
